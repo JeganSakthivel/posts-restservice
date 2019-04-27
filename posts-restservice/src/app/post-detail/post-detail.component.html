@@ -1,0 +1,51 @@
+<h1> <button class="btn btn-default" routerLink="/posts"> << Back</button> Posts Detail</h1>
+<div class="card col-sm-12"  *ngIf="postsObject">
+  <div class="card-body">
+    <h5 class="card-title">{{ postsObject.id }}</h5>    
+    <p class="card-text">{{ postsObject.title }}</p>
+    <p class="card-text">{{ postsObject.body }}</p>
+   
+    <button type="button" class="btn btn-default"  (click)="editPostsHandler()">Edit</button>
+    
+    <button type="button" class="btn btn-danger" (click)="deletePostsHandler(postsObject.id)">Delete</button>
+  </div>
+
+  <div class="alert alert-success" *ngIf="isDeleted">
+      Posts is deleted. wait while redirecting to post-list page.
+  </div>
+</div>
+
+<div class="modal fade" id="editPostsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="editablePostsObj">
+          <form class="text-left" id="editPostForm">
+                <div class="form-group">
+                  <label for="fullNameInput" id="fullNameLabel">Title</label>
+                  <input type="text" class="form-control" id="fullNameInput"  [(ngModel)]="editablePostsObj.title" 
+                  name ="title" placeholder="Enter Title" required>
+                </div>
+                <div class="form-group">
+                  <label for="phoneInput">Details</label>
+                  <input type="text" class="form-control" id="phoneInput" [(ngModel)]="editablePostsObj.body"
+                  name ="body" placeholder="Enter Details" required>
+                </div>
+                  
+                <div class="alert alert-success" *ngIf="isUpdated">
+                    Thanks, your record is updated.
+                </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updatePosts()" >UpdatePosts</button>
+      </div>
+    </div>
+  </div>
+</div>

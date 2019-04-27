@@ -1,0 +1,23 @@
+<div *ngIf="postslist && postslist.length>0">
+  <h1>Posts List</h1>
+  <div class="card-deck" *ngFor="let posts of postslist">
+    <div class="card">    
+      <div class="card-body">       
+        <h2 class="card-title"><a routerLink="/posts/{{ posts.id }}"> {{ posts.id }}</a></h2>
+        <p class="card-text">{{ posts.title }}</p>
+        <p class="card-text">{{ posts.body }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<div class="card col-sm-4"  *ngFor="let posts of postslist">
+  <div class="card-body">
+    <h5 class="card-title">{{ posts.userId }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ posts.id }}</h6>
+    <p class="card-text">{{ posts.title }}</p>
+    <p class="card-text">{{ posts.body }}</p>
+  </div>
+  </div>
+-->
